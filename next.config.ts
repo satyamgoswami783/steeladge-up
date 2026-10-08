@@ -3,8 +3,6 @@ import path from "path";
 import imageSettings from "./src/data/image-settings.json";
 
 const nextConfig: NextConfig = {
-  output: "export",
-  trailingSlash: true,
   images: {
     loader: "custom",
     loaderFile: "./src/lib/static-image-loader.ts",
