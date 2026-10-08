@@ -118,9 +118,9 @@ export function Header() {
                       )}
                     </Link>
 
-                    {/* Submenu Dropdown Container */}
+                    {/* Submenu Dropdown Container (Pure CSS group-hover + React state backed) */}
                     <div
-                      className={`absolute top-full left-0 w-[340px] pt-2 z-[1000] transition-all duration-150 ${
+                      className={`absolute top-full left-0 w-[340px] pt-2 z-[1000] transition-all duration-150 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 group-hover:pointer-events-auto ${
                         dropdownOpen
                           ? "opacity-100 visible translate-y-0 pointer-events-auto"
                           : "opacity-0 invisible -translate-y-1 pointer-events-none"
