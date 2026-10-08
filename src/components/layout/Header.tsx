@@ -131,7 +131,7 @@ export function Header() {
                                 isSubActive
                                   ? "bg-[#C89552]/20 border-[#C89552]/60 text-white"
                                   : isAll
-                                  ? "mt-2 pt-3 border-t border-white/15 bg-white/5 hover:bg-[#C89552]/20 hover:border-[#C89552]/40"
+                                  ? "mb-1.5 pb-3 border-b border-white/15 bg-white/5 hover:bg-[#C89552]/20 hover:border-[#C89552]/40"
                                   : "border-transparent hover:bg-white/10 hover:border-white/10"
                               }`}
                             >

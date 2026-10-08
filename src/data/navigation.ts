@@ -14,6 +14,11 @@ export const mainNavItems: NavItem[] = [
     href: "/services/",
     children: [
       {
+        label: "VIEW ALL SERVICES →",
+        href: "/services/",
+        description: "Explore our complete commercial general contracting capabilities.",
+      },
+      {
         label: "Franchise & Restaurants",
         href: "/services/restaurant-construction/",
         description: "Commercial kitchens, dining lounges, bars & turnkey franchise builds.",
@@ -27,11 +32,6 @@ export const mainNavItems: NavItem[] = [
         label: "Commercial Construction",
         href: "/services/commercial-construction/",
         description: "Turnkey commercial ground-up building & general contracting in Surrey & BC.",
-      },
-      {
-        label: "VIEW ALL SERVICES →",
-        href: "/services/",
-        description: "Explore our complete commercial general contracting capabilities.",
       },
     ],
   },
