@@ -34,6 +34,9 @@ export function Header() {
   const dropdownTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
+    // Initial check on mount (especially if URL has hash)
+    setScrolled(window.scrollY > 20);
+
     let ticking = false;
     const handleScroll = () => {
       if (!ticking) {
@@ -63,7 +66,15 @@ export function Header() {
   const handleMouseLeave = () => {
     dropdownTimeoutRef.current = setTimeout(() => {
       setDropdownOpen(false);
-    }, 150);
+    }, 200);
+  };
+
+  const handleLinkClick = (targetHref: string) => {
+    setDropdownOpen(false);
+    setMobileMenuOpen(false);
+    if (isRouteActive(pathname, targetHref)) {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
   };
 
   return (
@@ -95,35 +106,49 @@ export function Header() {
                     onMouseEnter={handleMouseEnter}
                     onMouseLeave={handleMouseLeave}
                   >
-                    <Link
-                      href={item.href}
-                      prefetch={true}
-                      onClick={() => setDropdownOpen(false)}
-                      className={`relative inline-flex items-center gap-1.5 text-xs font-bold tracking-widest uppercase transition-colors cursor-pointer py-1.5 ${
-                        isActive
-                          ? "text-[#D3A15D]"
-                          : "text-stone-200 hover:text-white"
-                      }`}
-                    >
-                      <span>{item.label}</span>
-                      <ChevronDown
-                        className={`w-3.5 h-3.5 transition-transform duration-200 ${
-                          dropdownOpen ? "rotate-180 text-[#D3A15D]" : isActive ? "text-[#D3A15D]" : "text-stone-400 group-hover:text-white"
+                    <div className="inline-flex items-center">
+                      <Link
+                        href={item.href}
+                        prefetch={true}
+                        onClick={() => handleLinkClick(item.href)}
+                        className={`relative inline-flex items-center text-xs font-bold tracking-widest uppercase transition-colors cursor-pointer py-1.5 ${
+                          isActive
+                            ? "text-[#D3A15D]"
+                            : "text-stone-200 hover:text-white"
                         }`}
-                      />
-                      {isActive ? (
-                        <span className="absolute bottom-0 left-0 right-0 h-[2.5px] bg-[#C89552] rounded-full shadow-[0_1px_6px_rgba(200,149,82,0.8)]" />
-                      ) : (
-                        <span className="absolute bottom-0 left-0 right-0 h-[1.5px] bg-white/40 scale-x-0 group-hover:scale-x-100 transition-transform duration-200" />
-                      )}
-                    </Link>
+                      >
+                        <span>{item.label}</span>
+                        {isActive ? (
+                          <span className="absolute bottom-0 left-0 right-0 h-[2.5px] bg-[#C89552] rounded-full shadow-[0_1px_6px_rgba(200,149,82,0.8)]" />
+                        ) : (
+                          <span className="absolute bottom-0 left-0 right-0 h-[1.5px] bg-white/40 scale-x-0 group-hover:scale-x-100 transition-transform duration-200" />
+                        )}
+                      </Link>
 
-                    {/* Submenu Dropdown Container (Pure CSS group-hover + React state backed) */}
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setDropdownOpen((prev) => !prev);
+                        }}
+                        className="p-1 ml-0.5 text-stone-400 hover:text-white transition-colors cursor-pointer focus:outline-none"
+                        aria-label="Toggle submenu"
+                        aria-expanded={dropdownOpen}
+                      >
+                        <ChevronDown
+                          className={`w-3.5 h-3.5 transition-transform duration-200 ${
+                            dropdownOpen ? "rotate-180 text-[#D3A15D]" : isActive ? "text-[#D3A15D]" : "text-stone-400 group-hover:text-white"
+                          }`}
+                        />
+                      </button>
+                    </div>
+
+                    {/* Submenu Dropdown Container */}
                     <div
-                      className={`absolute top-full left-0 w-[340px] pt-2 z-[1000] transition-all duration-150 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 group-hover:pointer-events-auto ${
+                      className={`absolute top-full left-0 w-[340px] pt-2 z-[1050] transition-all duration-150 ${
                         dropdownOpen
                           ? "opacity-100 visible translate-y-0 pointer-events-auto"
-                          : "opacity-0 invisible -translate-y-1 pointer-events-none"
+                          : "opacity-0 invisible -translate-y-1 pointer-events-none group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 group-hover:pointer-events-auto"
                       }`}
                     >
                       <div className="bg-[#0B2025]/98 backdrop-blur-2xl border border-white/20 shadow-[0_20px_50px_rgba(0,0,0,0.85)] p-2 space-y-1.5 ring-1 ring-black/50">
@@ -135,7 +160,7 @@ export function Header() {
                               key={subItem.href}
                               href={subItem.href}
                               prefetch={true}
-                              onClick={() => setDropdownOpen(false)}
+                              onClick={() => handleLinkClick(subItem.href)}
                               className={`group/sub block p-3 transition-all duration-150 rounded-none cursor-pointer border ${
                                 isSubActive
                                   ? "bg-[#C89552]/20 border-[#C89552]/70 text-white"
@@ -179,6 +204,7 @@ export function Header() {
                   key={item.label}
                   href={item.href}
                   prefetch={true}
+                  onClick={() => handleLinkClick(item.href)}
                   className={`group relative text-xs font-bold tracking-widest uppercase transition-colors py-2 cursor-pointer ${
                     isActive
                       ? "text-[#D3A15D]"
@@ -222,6 +248,16 @@ export function Header() {
               variant="primary"
               size="sm"
               className="bg-[#C89552] hover:bg-[#B8803D] border-[#C89552] text-white shadow-lg font-bold"
+              onClick={() => {
+                if (pathname.includes("/contact")) {
+                  const el = document.getElementById("quote-form");
+                  if (el) {
+                    el.scrollIntoView({ behavior: "smooth", block: "start" });
+                    const input = document.getElementById("fullName");
+                    if (input) (input as HTMLElement).focus();
+                  }
+                }
+              }}
             >
               START A PROJECT →
             </Button>
@@ -245,6 +281,16 @@ export function Header() {
               variant="primary"
               size="sm"
               className="hidden sm:inline-flex text-[11px] px-3 py-1.5 bg-[#C89552] text-white font-bold tracking-wider uppercase"
+              onClick={() => {
+                if (pathname.includes("/contact")) {
+                  const el = document.getElementById("quote-form");
+                  if (el) {
+                    el.scrollIntoView({ behavior: "smooth", block: "start" });
+                    const input = document.getElementById("fullName");
+                    if (input) (input as HTMLElement).focus();
+                  }
+                }
+              }}
             >
               START A PROJECT →
             </Button>
@@ -255,12 +301,6 @@ export function Header() {
               onClick={() => setMobileMenuOpen((prev) => !prev)}
               className="w-10 h-10 flex items-center justify-center text-stone-200 bg-white/5 border border-white/15 rounded-md hover:border-[#C89552] hover:text-white focus:outline-none focus:ring-2 focus:ring-[#C89552] cursor-pointer touch-manipulation active:scale-95 transition-all"
               aria-label={mobileMenuOpen ? "Close Menu" : "Open Menu"}
-            >
-              {mobileMenuOpen ? (
-                <X className="w-5 h-5 text-[#D3A15D]" />
-              ) : (
-                <Menu className="w-5 h-5 text-stone-100" />
-              )}
             </button>
           </div>
         </div>
@@ -292,7 +332,7 @@ export function Header() {
                         <Link
                           href={item.href}
                           prefetch={true}
-                          onClick={() => setMobileMenuOpen(false)}
+                          onClick={() => handleLinkClick(item.href)}
                           className={`text-sm font-bold tracking-widest uppercase cursor-pointer flex-1 ${
                             isActive ? "text-[#D3A15D]" : "text-white hover:text-[#D3A15D]"
                           }`}
@@ -322,7 +362,7 @@ export function Header() {
                                 key={subItem.href}
                                 href={subItem.href}
                                 prefetch={true}
-                                onClick={() => setMobileMenuOpen(false)}
+                                onClick={() => handleLinkClick(subItem.href)}
                                 className={`block text-xs py-2 px-2.5 rounded transition-all cursor-pointer touch-manipulation ${
                                   isSubActive
                                     ? "bg-[#C89552]/20 text-[#D3A15D] font-bold border-l-2 border-[#C89552]"
@@ -342,7 +382,7 @@ export function Header() {
                     <Link
                       href={item.href}
                       prefetch={true}
-                      onClick={() => setMobileMenuOpen(false)}
+                      onClick={() => handleLinkClick(item.href)}
                       className={`flex items-center justify-between py-2.5 px-2 rounded text-sm font-bold tracking-widest uppercase cursor-pointer touch-manipulation transition-colors ${
                         isActive
                           ? "text-[#D3A15D] bg-white/5 border-l-2 border-[#C89552]"
@@ -365,7 +405,17 @@ export function Header() {
               variant="primary"
               size="md"
               className="w-full bg-[#C89552] hover:bg-[#B8803D] text-white font-bold py-3 uppercase tracking-wider text-xs shadow-lg"
-              onClick={() => setMobileMenuOpen(false)}
+              onClick={() => {
+                setMobileMenuOpen(false);
+                if (pathname.includes("/contact")) {
+                  const el = document.getElementById("quote-form");
+                  if (el) {
+                    el.scrollIntoView({ behavior: "smooth", block: "start" });
+                    const input = document.getElementById("fullName");
+                    if (input) (input as HTMLElement).focus();
+                  }
+                }
+              }}
             >
               START A PROJECT →
             </Button>
