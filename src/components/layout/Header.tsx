@@ -10,6 +10,14 @@ import { WhatsAppIcon } from "@/components/ui/WhatsAppButton";
 import { mainNavItems } from "@/data/navigation";
 import { companyData } from "@/data/company";
 
+function isRouteActive(currentPathname: string, targetHref: string): boolean {
+  if (!currentPathname || !targetHref) return false;
+  const current = currentPathname.replace(/\/$/, "") || "/";
+  const target = targetHref.replace(/\/$/, "") || "/";
+  if (target === "/") return current === "/";
+  return current === target || current.startsWith(`${target}/`);
+}
+
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -70,9 +78,7 @@ export function Header() {
             aria-label="Main Navigation"
           >
             {mainNavItems.map((item) => {
-              const isActive =
-                pathname === item.href ||
-                (item.href !== "/" && pathname.startsWith(item.href));
+              const isActive = isRouteActive(pathname, item.href);
 
               if (item.children) {
                 return (
@@ -86,7 +92,7 @@ export function Header() {
                       href={item.href}
                       prefetch={true}
                       onClick={() => setDropdownOpen(false)}
-                      className={`inline-flex items-center gap-1.5 text-xs font-semibold tracking-widest uppercase transition-colors cursor-pointer py-1 ${
+                      className={`relative inline-flex items-center gap-1.5 text-xs font-semibold tracking-widest uppercase transition-colors cursor-pointer py-1.5 ${
                         isActive
                           ? "text-[#D3A15D]"
                           : "text-stone-200 hover:text-white"
@@ -95,9 +101,12 @@ export function Header() {
                       <span>{item.label}</span>
                       <ChevronDown
                         className={`w-3.5 h-3.5 transition-transform duration-200 ${
-                          dropdownOpen ? "rotate-180 text-[#D3A15D]" : "text-stone-400"
+                          dropdownOpen ? "rotate-180 text-[#D3A15D]" : isActive ? "text-[#D3A15D]" : "text-stone-400"
                         }`}
                       />
+                      {isActive && (
+                        <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#C89552]" />
+                      )}
                     </Link>
 
                     {/* Submenu Dropdown Container */}
@@ -110,6 +119,7 @@ export function Header() {
                     >
                       <div className="bg-[#0B2025]/98 backdrop-blur-2xl border border-white/20 shadow-[0_20px_50px_rgba(0,0,0,0.85)] p-2 space-y-1.5 ring-1 ring-black/50">
                         {item.children.map((subItem) => {
+                          const isSubActive = isRouteActive(pathname, subItem.href);
                           const isAll = subItem.label.includes("ALL");
                           return (
                             <Link
@@ -117,15 +127,17 @@ export function Header() {
                               href={subItem.href}
                               prefetch={true}
                               onClick={() => setDropdownOpen(false)}
-                              className={`group/sub block p-3 transition-all duration-150 rounded-none cursor-pointer border border-transparent active:scale-[0.99] ${
-                                isAll
+                              className={`group/sub block p-3 transition-all duration-150 rounded-none cursor-pointer border ${
+                                isSubActive
+                                  ? "bg-[#C89552]/20 border-[#C89552]/60 text-white"
+                                  : isAll
                                   ? "mt-2 pt-3 border-t border-white/15 bg-white/5 hover:bg-[#C89552]/20 hover:border-[#C89552]/40"
-                                  : "hover:bg-white/10 hover:border-white/10"
+                                  : "border-transparent hover:bg-white/10 hover:border-white/10"
                               }`}
                             >
                               <div
                                 className={`text-xs font-bold transition-colors flex items-center justify-between ${
-                                  isAll
+                                  isSubActive || isAll
                                     ? "text-[#D3A15D]"
                                     : "text-stone-100 group-hover/sub:text-[#D3A15D]"
                                 }`}
@@ -133,7 +145,7 @@ export function Header() {
                                 <span className="tracking-wide uppercase text-[11px] font-extrabold">{subItem.label}</span>
                                 <ArrowRight
                                   className={`w-3.5 h-3.5 transition-all duration-150 text-[#D3A15D] ${
-                                    isAll
+                                    isSubActive || isAll
                                       ? "opacity-100 translate-x-0"
                                       : "opacity-60 group-hover/sub:opacity-100 group-hover/sub:translate-x-1"
                                   }`}
@@ -158,13 +170,16 @@ export function Header() {
                   key={item.label}
                   href={item.href}
                   prefetch={true}
-                  className={`text-xs font-semibold tracking-widest uppercase transition-colors py-2 cursor-pointer ${
+                  className={`relative text-xs font-semibold tracking-widest uppercase transition-colors py-2 cursor-pointer ${
                     isActive
-                      ? "text-[#D3A15D] border-b-2 border-[#C89552]"
+                      ? "text-[#D3A15D]"
                       : "text-stone-200 hover:text-white"
                   }`}
                 >
-                  {item.label}
+                  <span>{item.label}</span>
+                  {isActive && (
+                    <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#C89552]" />
+                  )}
                 </Link>
               );
             })}
@@ -244,60 +259,72 @@ export function Header() {
           </div>
 
           <div className="space-y-1">
-            {mainNavItems.map((item) => (
-              <div key={item.label} className="border-b border-white/5 pb-1">
-                {item.children ? (
-                  <div>
-                    <div className="flex items-center justify-between py-2">
-                      <Link
-                        href={item.href}
-                        prefetch={true}
-                        onClick={() => setMobileMenuOpen(false)}
-                        className="text-sm font-bold tracking-widest text-white hover:text-[#D3A15D] uppercase cursor-pointer"
-                      >
-                        {item.label}
-                      </Link>
-                      <button
-                        type="button"
-                        onClick={() => setMobileSubmenuOpen((prev) => !prev)}
-                        className="p-1.5 text-[#D3A15D] cursor-pointer"
-                        aria-label="Toggle Submenu"
-                      >
-                        <ChevronDown
-                          className={`w-4 h-4 transition-transform ${
-                            mobileSubmenuOpen ? "rotate-180" : ""
+            {mainNavItems.map((item) => {
+              const isActive = isRouteActive(pathname, item.href);
+              return (
+                <div key={item.label} className="border-b border-white/5 pb-1">
+                  {item.children ? (
+                    <div>
+                      <div className="flex items-center justify-between py-2">
+                        <Link
+                          href={item.href}
+                          prefetch={true}
+                          onClick={() => setMobileMenuOpen(false)}
+                          className={`text-sm font-bold tracking-widest uppercase cursor-pointer ${
+                            isActive ? "text-[#D3A15D]" : "text-white hover:text-[#D3A15D]"
                           }`}
-                        />
-                      </button>
-                    </div>
-                    {mobileSubmenuOpen && (
-                      <div className="pl-3 space-y-1 my-1 border-l-2 border-[#C89552]/60">
-                        {item.children.map((subItem) => (
-                          <Link
-                            key={subItem.href}
-                            href={subItem.href}
-                            prefetch={true}
-                            onClick={() => setMobileMenuOpen(false)}
-                            className="block text-xs font-semibold text-stone-200 hover:text-[#D3A15D] active:text-[#D3A15D] py-2.5 cursor-pointer touch-manipulation"
-                          >
-                            {subItem.label}
-                          </Link>
-                        ))}
+                        >
+                          {item.label}
+                        </Link>
+                        <button
+                          type="button"
+                          onClick={() => setMobileSubmenuOpen((prev) => !prev)}
+                          className="p-1.5 text-[#D3A15D] cursor-pointer"
+                          aria-label="Toggle Submenu"
+                        >
+                          <ChevronDown
+                            className={`w-4 h-4 transition-transform ${
+                              mobileSubmenuOpen ? "rotate-180" : ""
+                            }`}
+                          />
+                        </button>
                       </div>
-                    )}
-                  </div>
-                ) : (
-                  <Link
-                    href={item.href}
-                    prefetch={true}
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="block py-2.5 text-sm font-bold tracking-widest text-white hover:text-[#D3A15D] uppercase cursor-pointer touch-manipulation"
-                  >
-                    {item.label}
-                  </Link>
-                )}
-              </div>
-            ))}
+                      {mobileSubmenuOpen && (
+                        <div className="pl-3 space-y-1 my-1 border-l-2 border-[#C89552]/60">
+                          {item.children.map((subItem) => {
+                            const isSubActive = isRouteActive(pathname, subItem.href);
+                            return (
+                              <Link
+                                key={subItem.href}
+                                href={subItem.href}
+                                prefetch={true}
+                                onClick={() => setMobileMenuOpen(false)}
+                                className={`block text-xs font-semibold py-2.5 cursor-pointer touch-manipulation ${
+                                  isSubActive ? "text-[#D3A15D]" : "text-stone-200 hover:text-[#D3A15D]"
+                                }`}
+                              >
+                                {subItem.label}
+                              </Link>
+                            );
+                          })}
+                        </div>
+                      )}
+                    </div>
+                  ) : (
+                    <Link
+                      href={item.href}
+                      prefetch={true}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className={`block py-2.5 text-sm font-bold tracking-widest uppercase cursor-pointer touch-manipulation ${
+                        isActive ? "text-[#D3A15D]" : "text-white hover:text-[#D3A15D]"
+                      }`}
+                    >
+                      {item.label}
+                    </Link>
+                  )}
+                </div>
+              );
+            })}
           </div>
 
           <div className="pt-4 border-t border-white/10 flex flex-col gap-3">
