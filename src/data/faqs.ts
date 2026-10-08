@@ -106,8 +106,8 @@ export const serviceFAQs: Record<string, FAQItem[]> = {
       question: "Does Steelage Construction provide ground-up commercial construction?",
       answer: "Yes. Steelage Construction provides ground-up commercial building construction, engineered concrete foundations, structural steel framing, and building envelope cladding across Surrey and Metro Vancouver.",
       projectProof: {
-        text: "View BMPP Commercial Exterior Project",
-        href: "/projects/bmpp-commercial-exterior/",
+        text: "View Our Commercial Projects",
+        href: "/projects/",
       },
     },
     {

@@ -179,7 +179,7 @@ const projectEntries: Project[] = [
       "/images/projects/oakberry-main.jpg",
       "/images/projects/oakberry-counter.jpg",
     ],
-    relatedServiceSlug: "interior-build-outs",
+    relatedServiceSlug: "tenant-improvements",
   },
   {
     slug: "oakberry-acai-bar",
@@ -231,7 +231,7 @@ const projectEntries: Project[] = [
       "/images/projects/oakberry-main.jpg",
       "/images/projects/oakberry-front.jpg",
     ],
-    relatedServiceSlug: "interior-build-outs",
+    relatedServiceSlug: "tenant-improvements",
   },
   {
     slug: "mucho-burrito-surrey",
@@ -313,7 +313,7 @@ const projectEntries: Project[] = [
       "/images/projects/mucho-burrito-interior.jpg",
       "/images/projects/mucho-burrito-wall.jpg",
     ],
-    relatedServiceSlug: "interior-build-outs",
+    relatedServiceSlug: "tenant-improvements",
   },
   {
     slug: "mucho-burrito-lighting",
@@ -340,7 +340,7 @@ const projectEntries: Project[] = [
       "/images/projects/mucho-burrito-interior.jpg",
       "/images/projects/mucho-burrito-wall.jpg",
     ],
-    relatedServiceSlug: "interior-build-outs",
+    relatedServiceSlug: "tenant-improvements",
   },
   {
     slug: "bmpp-counter",
@@ -394,7 +394,7 @@ const projectEntries: Project[] = [
       "/images/projects/bmpp-exterior.jpg",
       "/images/projects/bmpp-seating.jpg",
     ],
-    relatedServiceSlug: "interior-build-outs",
+    relatedServiceSlug: "tenant-improvements",
   },
   {
     slug: "bmpp-dining",
@@ -421,7 +421,7 @@ const projectEntries: Project[] = [
       "/images/projects/bmpp-exterior.jpg",
       "/images/projects/bmpp-mural.jpg",
     ],
-    relatedServiceSlug: "interior-build-outs",
+    relatedServiceSlug: "tenant-improvements",
   },
   {
     slug: "big-mamas-papas-pizzeria",
@@ -502,7 +502,7 @@ const projectEntries: Project[] = [
       "/images/projects/marbleslab-main.jpg",
       "/images/projects/marbleslab-counter.jpg",
     ],
-    relatedServiceSlug: "interior-build-outs",
+    relatedServiceSlug: "tenant-improvements",
   },
   {
     slug: "poko-popcorn-seating",
@@ -554,7 +554,7 @@ const projectEntries: Project[] = [
       "/images/projects/marbleslab-main.jpg",
       "/images/projects/marbleslab-display.jpg",
     ],
-    relatedServiceSlug: "interior-build-outs",
+    relatedServiceSlug: "tenant-improvements",
   },
 
   // ─── Client portfolio additions (drive upload) ───────────────────────────
@@ -600,7 +600,7 @@ const projectEntries: Project[] = [
     ],
     image: "/images/projects/dq-cloverdale.jpg",
     gallery: ["/images/projects/dq-cloverdale.jpg"],
-    relatedServiceSlug: "interior-build-outs",
+    relatedServiceSlug: "tenant-improvements",
   },
   {
     slug: "dq-powell-river",
@@ -622,7 +622,7 @@ const projectEntries: Project[] = [
     ],
     image: "/images/projects/dq-powell-river.jpg",
     gallery: ["/images/projects/dq-powell-river.jpg"],
-    relatedServiceSlug: "interior-build-outs",
+    relatedServiceSlug: "tenant-improvements",
   },
   {
     slug: "dq-surrey-counter",
@@ -727,7 +727,7 @@ const projectEntries: Project[] = [
     ],
     image: "/images/projects/lighthouse-main.png",
     gallery: ["/images/projects/lighthouse-main.png", "/images/projects/lighthouse-seating.png"],
-    relatedServiceSlug: "interior-build-outs",
+    relatedServiceSlug: "tenant-improvements",
   },
   {
     slug: "ihop",
@@ -792,7 +792,7 @@ const projectEntries: Project[] = [
     ],
     image: "/images/projects/rogers-store.jpg",
     gallery: ["/images/projects/rogers-store.jpg", "/images/projects/fido-store.jpg"],
-    relatedServiceSlug: "interior-build-outs",
+    relatedServiceSlug: "tenant-improvements",
   },
   {
     slug: "cwc-office",
@@ -814,7 +814,7 @@ const projectEntries: Project[] = [
     ],
     image: "/images/projects/cwc-office.jpg",
     gallery: ["/images/projects/cwc-office.jpg"],
-    relatedServiceSlug: "interior-build-outs",
+    relatedServiceSlug: "tenant-improvements",
   },
   {
     slug: "truwest-office",
@@ -836,7 +836,7 @@ const projectEntries: Project[] = [
     ],
     image: "/images/projects/truwest-office.jpg",
     gallery: ["/images/projects/truwest-office.jpg"],
-    relatedServiceSlug: "interior-build-outs",
+    relatedServiceSlug: "tenant-improvements",
   },
   {
     slug: "masud-dental-lab",
