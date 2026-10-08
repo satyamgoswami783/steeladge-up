@@ -301,6 +301,12 @@ export function Header() {
               onClick={() => setMobileMenuOpen((prev) => !prev)}
               className="w-10 h-10 flex items-center justify-center text-stone-200 bg-white/5 border border-white/15 rounded-md hover:border-[#C89552] hover:text-white focus:outline-none focus:ring-2 focus:ring-[#C89552] cursor-pointer touch-manipulation active:scale-95 transition-all"
               aria-label={mobileMenuOpen ? "Close Menu" : "Open Menu"}
+            >
+              {mobileMenuOpen ? (
+                <X className="w-5 h-5 text-[#D3A15D]" />
+              ) : (
+                <Menu className="w-5 h-5 text-stone-100" />
+              )}
             </button>
           </div>
         </div>
