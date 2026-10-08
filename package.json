@@ -8,6 +8,7 @@
     "dev": "next dev -H 0.0.0.0",
     "prebuild": "npm run images:optimize",
     "build": "next build",
+    "postbuild": "node scripts/sync-dist.mjs",
     "start": "next start",
     "lint": "eslint"
   },
