@@ -4,7 +4,7 @@ import { ArrowRight, Play } from "lucide-react";
 
 export function Hero() {
   return (
-    <section className="relative min-h-screen w-full flex items-center bg-[#08171A] overflow-hidden pt-24 sm:pt-28 lg:pt-24 pb-14 sm:pb-16">
+    <section className="relative min-h-[90vh] sm:min-h-screen w-full flex items-center bg-[#08171A] overflow-hidden pt-28 sm:pt-32 lg:pt-24 pb-14 sm:pb-16">
       {/* Background Daylight Photography with smooth Ken-Burns motion */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
         <div className="relative w-full h-full animate-ken-burns">
@@ -19,13 +19,9 @@ export function Hero() {
           />
         </div>
 
-        {/* Clean, solid-opacity gradient for left text readability without touching the building on the right */}
+        {/* Responsive contrast gradient for mobile and desktop text readability */}
         <div
-          className="absolute inset-0 z-1"
-          style={{
-            background:
-              "linear-gradient(90deg, rgba(8,23,26,0.96) 0%, rgba(8,23,26,0.80) 30%, rgba(8,23,26,0.25) 48%, rgba(8,23,26,0.00) 66%)",
-          }}
+          className="absolute inset-0 z-1 bg-gradient-to-b from-[#08171A]/95 via-[#08171A]/85 to-[#08171A]/95 sm:bg-none sm:[background:linear-gradient(90deg,rgba(8,23,26,0.96)_0%,rgba(8,23,26,0.80)_30%,rgba(8,23,26,0.25)_48%,rgba(8,23,26,0.00)_66%)]"
         />
 
         {/* Subtle top fade for navbar contrast */}
@@ -37,27 +33,27 @@ export function Hero() {
 
       <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Left Column — constrained so it never overlaps the building on the right */}
-        <div className="py-6 flex flex-col justify-center" style={{ maxWidth: "520px" }}>
+        <div className="py-4 sm:py-6 flex flex-col justify-center max-w-[540px]">
 
           {/* Eyebrow badge with glowing pulsing gold beacon */}
-          <div className="inline-flex items-center gap-2.5 mb-4 sm:mb-5">
-            <span className="relative flex h-2.5 w-2.5">
+          <div className="inline-flex items-center gap-2 mb-3.5 sm:mb-5">
+            <span className="relative flex h-2 w-2 sm:h-2.5 sm:w-2.5 shrink-0">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#D3A15D] opacity-75" />
-              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#D3A15D] shadow-[0_0_8px_rgba(211,161,93,0.9)]" />
+              <span className="relative inline-flex rounded-full h-2 w-2 sm:h-2.5 sm:w-2.5 bg-[#D3A15D] shadow-[0_0_8px_rgba(211,161,93,0.9)]" />
             </span>
-            <span className="text-xs sm:text-[13px] font-bold tracking-[0.22em] text-[#D3A15D] uppercase">
+            <span className="text-[10.5px] sm:text-[13px] font-bold tracking-[0.2em] text-[#D3A15D] uppercase">
               STEELAGE CONSTRUCTION LTD.
             </span>
-            <span className="w-8 sm:w-14 h-px bg-gradient-to-r from-[#C89552] to-transparent" />
+            <span className="w-6 sm:w-14 h-px bg-gradient-to-r from-[#C89552] to-transparent" />
           </div>
 
-          {/* Attractive, bold, compact headline with gold highlight — clean crisp typography */}
+          {/* Attractive, bold, compact headline with gold highlight */}
           <h1
             className="font-black text-white tracking-tight uppercase"
             style={{
-              fontSize: "clamp(2rem, 3.4vw, 3.1rem)",
-              lineHeight: 1.08,
-              marginBottom: "1.25rem",
+              fontSize: "clamp(1.75rem, 4vw, 3.1rem)",
+              lineHeight: 1.1,
+              marginBottom: "1rem",
               letterSpacing: "-0.02em",
               textShadow: "0 2px 8px rgba(0,0,0,0.6)",
             }}
@@ -70,24 +66,24 @@ export function Hero() {
 
           {/* Subtitles & Industry Focus */}
           <p
-            className="text-sm sm:text-base text-slate-100 font-medium leading-relaxed mb-3.5 sm:mb-4"
-            style={{ maxWidth: "470px", textShadow: "0 1px 4px rgba(0,0,0,0.5)" }}
+            className="text-xs sm:text-base text-slate-100 font-medium leading-relaxed mb-3 sm:mb-4 max-w-[470px]"
+            style={{ textShadow: "0 1px 4px rgba(0,0,0,0.5)" }}
           >
             Commercial construction from concept to opening across British Columbia.
           </p>
 
           <p 
-            className="text-xs sm:text-[13px] font-bold tracking-[0.16em] text-[#D3A15D] uppercase mb-7 sm:mb-8"
+            className="text-[11px] sm:text-[13px] font-bold tracking-[0.14em] text-[#D3A15D] uppercase mb-6 sm:mb-8"
             style={{ textShadow: "0 1px 4px rgba(0,0,0,0.5)" }}
           >
             FRANCHISE RESTAURANTS • DAYCARES • MEDICAL &amp; DENTAL
           </p>
 
-          {/* CTAs with hover animations */}
-          <div className="flex flex-wrap items-center gap-3.5 sm:gap-4 mb-6">
+          {/* CTAs with responsive layout */}
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 mb-5 sm:mb-6">
             <Link
               href="/contact/"
-              className="inline-flex items-center gap-2.5 bg-gradient-to-r from-[#C89552] to-[#B8803D] hover:from-[#D3A15D] hover:to-[#C89552] text-white font-bold text-xs sm:text-sm uppercase px-7 sm:px-8 py-4 tracking-wider transition-all shadow-[0_4px_20px_rgba(200,149,82,0.4)] hover:shadow-[0_6px_28px_rgba(200,149,82,0.6)] hover:-translate-y-0.5 group cursor-pointer"
+              className="inline-flex items-center justify-center gap-2.5 bg-gradient-to-r from-[#C89552] to-[#B8803D] hover:from-[#D3A15D] hover:to-[#C89552] text-white font-bold text-xs sm:text-sm uppercase px-6 sm:px-8 py-3.5 sm:py-4 tracking-wider transition-all shadow-[0_4px_20px_rgba(200,149,82,0.4)] hover:shadow-[0_6px_28px_rgba(200,149,82,0.6)] hover:-translate-y-0.5 group cursor-pointer text-center"
             >
               <span>START A PROJECT</span>
               <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
@@ -95,7 +91,7 @@ export function Hero() {
 
             <Link
               href="/projects/"
-              className="inline-flex items-center gap-2.5 bg-[#0B2025]/80 hover:bg-[#0B2025] border border-white/30 hover:border-[#C89552] text-white font-bold text-xs sm:text-sm uppercase px-7 sm:px-8 py-4 tracking-wider transition-all backdrop-blur-md hover:-translate-y-0.5 cursor-pointer shadow-lg"
+              className="inline-flex items-center justify-center gap-2.5 bg-[#0B2025]/80 hover:bg-[#0B2025] border border-white/30 hover:border-[#C89552] text-white font-bold text-xs sm:text-sm uppercase px-6 sm:px-8 py-3.5 sm:py-4 tracking-wider transition-all backdrop-blur-md hover:-translate-y-0.5 cursor-pointer shadow-lg text-center"
             >
               <Play className="w-3.5 h-3.5 fill-white text-white" />
               <span>VIEW OUR WORK</span>
@@ -103,7 +99,7 @@ export function Hero() {
           </div>
 
           {/* Live Credibility Mini-Pill */}
-          <div className="inline-flex items-center gap-2 text-xs text-slate-300 font-medium tracking-wide">
+          <div className="inline-flex items-center gap-2 text-[11px] sm:text-xs text-slate-300 font-medium tracking-wide">
             <span className="text-[#D3A15D] font-bold">✓</span>
             <span>Turnkey MEP &bull; Permits &bull; City &amp; Health Inspected</span>
           </div>

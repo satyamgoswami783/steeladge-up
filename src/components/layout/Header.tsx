@@ -227,34 +227,39 @@ export function Header() {
             </Button>
           </div>
 
-          {/* Mobile Hamburger Menu Toggle */}
-          <div className="flex items-center gap-2 lg:hidden">
+          {/* Mobile Actions & Toggle */}
+          <div className="flex items-center gap-2.5 lg:hidden">
+            {/* Quick Direct Call Icon Button */}
             <a
               href={`tel:${companyData.contact.phoneRaw}`}
-              className="flex items-center gap-1 bg-[#C89552]/20 text-[#D3A15D] border border-[#C89552]/40 px-2.5 py-1 text-[11px] font-bold tracking-wide rounded-none hover:bg-[#C89552] hover:text-white transition-all md:hidden"
-              aria-label="Call (604) 418-1515"
+              className="flex items-center justify-center w-9 h-9 rounded-md bg-[#C89552]/20 text-[#D3A15D] border border-[#C89552]/50 hover:bg-[#C89552] hover:text-white transition-all shadow-sm active:scale-95 touch-manipulation"
+              aria-label="Call Steelage Construction"
+              title={`Call ${companyData.contact.phone}`}
             >
-              <Phone className="w-3 h-3 text-[#D3A15D]" />
-              <span>(604) 418-1515</span>
+              <Phone className="w-4 h-4" />
             </a>
+
+            {/* Quick CTA on tablets / medium screens */}
             <Button
               href="/contact/"
               variant="primary"
               size="sm"
-              className="text-[11px] px-2.5 py-1 md:hidden bg-[#C89552] text-white font-bold"
+              className="hidden sm:inline-flex text-[11px] px-3 py-1.5 bg-[#C89552] text-white font-bold tracking-wider uppercase"
             >
               START A PROJECT →
             </Button>
+
+            {/* Luxury Hamburger Toggle Button */}
             <button
               type="button"
               onClick={() => setMobileMenuOpen((prev) => !prev)}
-              className="p-2.5 text-stone-200 hover:text-white focus:outline-none focus:ring-2 focus:ring-[#C89552] cursor-pointer touch-manipulation"
+              className="w-10 h-10 flex items-center justify-center text-stone-200 bg-white/5 border border-white/15 rounded-md hover:border-[#C89552] hover:text-white focus:outline-none focus:ring-2 focus:ring-[#C89552] cursor-pointer touch-manipulation active:scale-95 transition-all"
               aria-label={mobileMenuOpen ? "Close Menu" : "Open Menu"}
             >
               {mobileMenuOpen ? (
-                <X className="w-6 h-6 text-[#D3A15D]" />
+                <X className="w-5 h-5 text-[#D3A15D]" />
               ) : (
-                <Menu className="w-6 h-6" />
+                <Menu className="w-5 h-5 text-stone-100" />
               )}
             </button>
           </div>
@@ -263,12 +268,19 @@ export function Header() {
 
       {/* Mobile Drawer Navigation */}
       {mobileMenuOpen && (
-        <div className="lg:hidden absolute top-full left-0 right-0 bg-[#08171A] border-b border-white/15 shadow-2xl py-6 px-6 space-y-4 max-h-[85vh] overflow-y-auto z-[1000] pointer-events-auto">
-          <div className="flex items-center gap-2 text-stone-300 text-xs font-medium pb-3 border-b border-white/10">
-            <MapPin className="w-4 h-4 text-[#D3A15D]" />
-            <span>Serving Surrey & Lower Mainland, BC</span>
+        <div className="lg:hidden absolute top-full left-0 right-0 bg-[#08171A]/98 backdrop-blur-2xl border-b border-white/15 shadow-[0_25px_60px_rgba(0,0,0,0.9)] py-5 px-5 space-y-4 max-h-[85vh] overflow-y-auto z-[1000] pointer-events-auto animate-in fade-in slide-in-from-top-2 duration-200">
+          {/* Location & License Header Badge */}
+          <div className="flex items-center justify-between pb-3 border-b border-white/10 text-xs text-stone-300">
+            <div className="flex items-center gap-1.5">
+              <MapPin className="w-3.5 h-3.5 text-[#D3A15D]" />
+              <span className="font-medium">Surrey &amp; Greater Vancouver, BC</span>
+            </div>
+            <span className="text-[10px] font-bold tracking-wider text-[#D3A15D] uppercase bg-[#C89552]/10 border border-[#C89552]/30 px-2 py-0.5">
+              LICENSED GC
+            </span>
           </div>
 
+          {/* Navigation Links */}
           <div className="space-y-1">
             {mainNavItems.map((item) => {
               const isActive = isRouteActive(pathname, item.href);
@@ -276,12 +288,12 @@ export function Header() {
                 <div key={item.label} className="border-b border-white/5 pb-1">
                   {item.children ? (
                     <div>
-                      <div className="flex items-center justify-between py-2">
+                      <div className={`flex items-center justify-between py-2.5 px-2 rounded transition-colors ${isActive ? "bg-white/5" : ""}`}>
                         <Link
                           href={item.href}
                           prefetch={true}
                           onClick={() => setMobileMenuOpen(false)}
-                          className={`text-sm font-bold tracking-widest uppercase cursor-pointer ${
+                          className={`text-sm font-bold tracking-widest uppercase cursor-pointer flex-1 ${
                             isActive ? "text-[#D3A15D]" : "text-white hover:text-[#D3A15D]"
                           }`}
                         >
@@ -290,31 +302,36 @@ export function Header() {
                         <button
                           type="button"
                           onClick={() => setMobileSubmenuOpen((prev) => !prev)}
-                          className="p-1.5 text-[#D3A15D] cursor-pointer"
+                          className="p-1.5 text-[#D3A15D] cursor-pointer hover:bg-white/10 rounded"
                           aria-label="Toggle Submenu"
                         >
                           <ChevronDown
-                            className={`w-4 h-4 transition-transform ${
+                            className={`w-4 h-4 transition-transform duration-200 ${
                               mobileSubmenuOpen ? "rotate-180" : ""
                             }`}
                           />
                         </button>
                       </div>
                       {mobileSubmenuOpen && (
-                        <div className="pl-3 space-y-1 my-1 border-l-2 border-[#C89552]/60">
+                        <div className="pl-3 my-1.5 border-l-2 border-[#C89552] space-y-1">
                           {item.children.map((subItem) => {
                             const isSubActive = isSubItemActive(pathname, subItem.href);
+                            const isAll = subItem.label.includes("ALL");
                             return (
                               <Link
                                 key={subItem.href}
                                 href={subItem.href}
                                 prefetch={true}
                                 onClick={() => setMobileMenuOpen(false)}
-                                className={`block text-xs font-semibold py-2.5 cursor-pointer touch-manipulation ${
-                                  isSubActive ? "text-[#D3A15D] font-bold" : "text-stone-200 hover:text-[#D3A15D]"
+                                className={`block text-xs py-2 px-2.5 rounded transition-all cursor-pointer touch-manipulation ${
+                                  isSubActive
+                                    ? "bg-[#C89552]/20 text-[#D3A15D] font-bold border-l-2 border-[#C89552]"
+                                    : isAll
+                                    ? "text-[#D3A15D] font-bold bg-white/5 border border-white/10 my-1"
+                                    : "text-stone-200 hover:text-[#D3A15D] hover:bg-white/5 font-medium"
                                 }`}
                               >
-                                {subItem.label}
+                                <span>{subItem.label}</span>
                               </Link>
                             );
                           })}
@@ -326,11 +343,14 @@ export function Header() {
                       href={item.href}
                       prefetch={true}
                       onClick={() => setMobileMenuOpen(false)}
-                      className={`block py-2.5 text-sm font-bold tracking-widest uppercase cursor-pointer touch-manipulation ${
-                        isActive ? "text-[#D3A15D]" : "text-white hover:text-[#D3A15D]"
+                      className={`flex items-center justify-between py-2.5 px-2 rounded text-sm font-bold tracking-widest uppercase cursor-pointer touch-manipulation transition-colors ${
+                        isActive
+                          ? "text-[#D3A15D] bg-white/5 border-l-2 border-[#C89552]"
+                          : "text-white hover:text-[#D3A15D] hover:bg-white/5"
                       }`}
                     >
-                      {item.label}
+                      <span>{item.label}</span>
+                      {isActive && <span className="w-1.5 h-1.5 rounded-full bg-[#C89552]" />}
                     </Link>
                   )}
                 </div>
@@ -338,12 +358,13 @@ export function Header() {
             })}
           </div>
 
-          <div className="pt-4 border-t border-white/10 flex flex-col gap-3">
+          {/* CTAs & Direct Contact Block */}
+          <div className="pt-3 border-t border-white/10 flex flex-col gap-2.5">
             <Button
               href="/contact/"
               variant="primary"
               size="md"
-              className="w-full bg-[#C89552] text-white font-bold"
+              className="w-full bg-[#C89552] hover:bg-[#B8803D] text-white font-bold py-3 uppercase tracking-wider text-xs shadow-lg"
               onClick={() => setMobileMenuOpen(false)}
             >
               START A PROJECT →
@@ -353,20 +374,17 @@ export function Header() {
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => setMobileMenuOpen(false)}
-              className="flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#20ba59] text-white py-2.5 px-4 font-bold text-xs tracking-wider uppercase transition-colors"
+              className="flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#20ba59] text-white py-2.5 px-4 font-bold text-xs tracking-wider uppercase transition-colors shadow-md rounded"
             >
               <WhatsAppIcon className="w-4 h-4 fill-white" />
               <span>Chat on WhatsApp</span>
             </a>
-            <div className="text-center text-xs text-stone-300 space-y-1">
+            <div className="bg-white/5 p-3 rounded border border-white/5 text-center text-xs text-stone-300 space-y-1">
               <div>
-                Call Direct: <a href={`tel:${companyData.contact.phoneRaw}`} className="text-white font-bold hover:underline">{companyData.contact.phone}</a>
+                Direct Phone: <a href={`tel:${companyData.contact.phoneRaw}`} className="text-[#D3A15D] font-bold hover:underline">{companyData.contact.phone}</a>
               </div>
-              <div>
-                BC Office: <a href={`tel:${companyData.contact.secondaryPhoneRaw}`} className="text-stone-300 hover:text-white hover:underline">{companyData.contact.secondaryPhone}</a>
-              </div>
-              <div>
-                AB Office: <a href={`tel:${companyData.contact.tertiaryPhoneRaw}`} className="text-stone-300 hover:text-white hover:underline">{companyData.contact.tertiaryPhone}</a>
+              <div className="text-[11px] text-stone-400">
+                Surrey HQ &bull; Serving Vancouver, Burnaby, Richmond, Coquitlam &amp; Fraser Valley
               </div>
             </div>
           </div>

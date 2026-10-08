@@ -31,7 +31,7 @@ export function WhatsAppButton({
   return (
     <aside
       aria-label="WhatsApp Contact"
-      className="fixed bottom-7 right-6 z-[9999] flex items-center group pointer-events-auto"
+      className="fixed bottom-5 right-4 sm:bottom-7 sm:right-6 z-[9999] flex items-center group pointer-events-auto"
     >
       {/* Tooltip on hover */}
       <span className="hidden sm:inline-block mr-3 px-3 py-1.5 bg-brand-dark/95 text-white text-xs font-semibold tracking-wide rounded-md shadow-xl border border-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap">
@@ -44,7 +44,7 @@ export function WhatsAppButton({
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Chat with SteeLage Construction on WhatsApp"
-        className="relative flex items-center justify-center w-14 h-14 bg-[#25D366] hover:bg-[#20ba59] text-white rounded-full shadow-2xl hover:shadow-[0_0_25px_rgba(37,211,102,0.6)] transform hover:scale-110 active:scale-95 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-[#25D366]/40"
+        className="relative flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 bg-[#25D366] hover:bg-[#20ba59] text-white rounded-full shadow-2xl hover:shadow-[0_0_25px_rgba(37,211,102,0.6)] transform hover:scale-110 active:scale-95 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-[#25D366]/40"
       >
         {/* Pulsing ring animation */}
         <span
@@ -53,7 +53,7 @@ export function WhatsAppButton({
         />
 
         {/* WhatsApp Icon */}
-        <WhatsAppIcon className="w-8 h-8 fill-white relative z-10" />
+        <WhatsAppIcon className="w-6 h-6 sm:w-8 sm:h-8 fill-white relative z-10" />
       </a>
     </aside>
   );
