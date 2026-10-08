@@ -138,16 +138,16 @@ export function Process() {
     <section className="py-20 bg-brand-light border-t border-slate-200 relative bg-arch-grid-dark overflow-hidden">
       <Container size="wide">
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
           <div>
-            <span className="text-xs font-bold tracking-[0.2em] text-brand-teal uppercase block mb-1">
-              PROVEN METHODOLOGY & TIMELINE
+            <span className="text-xs font-bold tracking-[0.2em] text-[#D3A15D] uppercase block mb-1">
+              INTERACTIVE TIMELINE &amp; INSPECTOR
             </span>
-            <h2 className="text-2xl sm:text-4xl font-extrabold text-brand-dark tracking-tight uppercase">
-              OUR COMMERCIAL PROCESS
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-brand-dark tracking-tight uppercase">
+              4-PHASE EXECUTION FRAMEWORK
             </h2>
-            <p className="text-xs sm:text-sm text-brand-muted max-w-xl mt-2 leading-relaxed">
-              Click through the 4-stage framework below or launch the interactive estimator to preview your project&apos;s timeline.
+            <p className="text-xs sm:text-sm text-brand-muted max-w-xl mt-1.5 leading-relaxed">
+              Explore deliverables, timeframes, and trade responsibilities across each phase, or launch the estimator to calculate your project schedule.
             </p>
           </div>
 

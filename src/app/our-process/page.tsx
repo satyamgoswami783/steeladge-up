@@ -25,9 +25,29 @@ export default function ProcessPage() {
             as="h1"
             eyebrow="METHODOLOGY & TIMELINE"
             title="OUR COMMERCIAL PROCESS"
-            description="Proven pre-construction, planning, and build management framework built to eliminate delays and deliver exceptional commercial interiors."
+            description="Proven pre-construction, planning, and build management framework engineered to eliminate budget creep, expedite municipal approvals, and deliver turnkey handover across British Columbia."
             darkBackground
           />
+
+          {/* Quick 4-Step Milestone Pills */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3.5 mt-8 pt-8 border-t border-white/10">
+            <div className="bg-white/5 border border-white/10 p-3.5">
+              <span className="text-[10px] font-bold text-[#D3A15D] uppercase tracking-wider block">PHASE 01 • 1-2 WKS</span>
+              <span className="text-xs font-extrabold text-white uppercase tracking-wide block mt-1">Consult &amp; Audit</span>
+            </div>
+            <div className="bg-white/5 border border-white/10 p-3.5">
+              <span className="text-[10px] font-bold text-[#D3A15D] uppercase tracking-wider block">PHASE 02 • 2-4 WKS</span>
+              <span className="text-xs font-extrabold text-white uppercase tracking-wide block mt-1">Design &amp; Permits</span>
+            </div>
+            <div className="bg-white/5 border border-white/10 p-3.5">
+              <span className="text-[10px] font-bold text-[#D3A15D] uppercase tracking-wider block">PHASE 03 • 4-12+ WKS</span>
+              <span className="text-xs font-extrabold text-white uppercase tracking-wide block mt-1">Active Construction</span>
+            </div>
+            <div className="bg-white/5 border border-white/10 p-3.5">
+              <span className="text-[10px] font-bold text-[#D3A15D] uppercase tracking-wider block">PHASE 04 • 1-2 WKS</span>
+              <span className="text-xs font-extrabold text-white uppercase tracking-wide block mt-1">Occupancy &amp; Keys</span>
+            </div>
+          </div>
         </Container>
       </section>
 
