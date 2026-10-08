@@ -218,7 +218,7 @@ export function Header() {
 
             {/* START A PROJECT CTA */}
             <Button
-              href="/contact/"
+              href="/contact/#quote-form"
               variant="primary"
               size="sm"
               className="bg-[#C89552] hover:bg-[#B8803D] border-[#C89552] text-white shadow-lg font-bold"
@@ -241,7 +241,7 @@ export function Header() {
 
             {/* Quick CTA on tablets / medium screens */}
             <Button
-              href="/contact/"
+              href="/contact/#quote-form"
               variant="primary"
               size="sm"
               className="hidden sm:inline-flex text-[11px] px-3 py-1.5 bg-[#C89552] text-white font-bold tracking-wider uppercase"
@@ -361,7 +361,7 @@ export function Header() {
           {/* CTAs & Direct Contact Block */}
           <div className="pt-3 border-t border-white/10 flex flex-col gap-2.5">
             <Button
-              href="/contact/"
+              href="/contact/#quote-form"
               variant="primary"
               size="md"
               className="w-full bg-[#C89552] hover:bg-[#B8803D] text-white font-bold py-3 uppercase tracking-wider text-xs shadow-lg"

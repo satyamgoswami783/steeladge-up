@@ -20,7 +20,7 @@ export function FinalCTA() {
 
           {/* Center Action Button */}
           <div>
-            <Button href="/contact/" variant="primary" size="lg" className="shadow-2xl">
+            <Button href="/contact/#quote-form" variant="primary" size="lg" className="shadow-2xl">
               GET A QUOTE TODAY
               <ArrowRight className="w-4 h-4 ml-1" />
             </Button>

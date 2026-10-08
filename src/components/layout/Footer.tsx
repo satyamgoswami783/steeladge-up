@@ -174,7 +174,7 @@ export function Footer() {
             </div>
 
             <Button
-              href="/contact/"
+              href="/contact/#quote-form"
               variant="primary"
               size="lg"
               className="w-full bg-gradient-to-r from-[#C89552] to-[#B8803D] hover:from-[#D3A15D] hover:to-[#C89552] border-none text-white py-3.5 font-bold text-xs uppercase tracking-wider shadow-lg"

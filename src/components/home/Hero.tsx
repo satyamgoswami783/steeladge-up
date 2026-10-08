@@ -82,7 +82,7 @@ export function Hero() {
           {/* CTAs with responsive layout */}
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 mb-5 sm:mb-6">
             <Link
-              href="/contact/"
+              href="/contact/#quote-form"
               className="inline-flex items-center justify-center gap-2.5 bg-gradient-to-r from-[#C89552] to-[#B8803D] hover:from-[#D3A15D] hover:to-[#C89552] text-white font-bold text-xs sm:text-sm uppercase px-6 sm:px-8 py-3.5 sm:py-4 tracking-wider transition-all shadow-[0_4px_20px_rgba(200,149,82,0.4)] hover:shadow-[0_6px_28px_rgba(200,149,82,0.6)] hover:-translate-y-0.5 group cursor-pointer text-center"
             >
               <span>START A PROJECT</span>

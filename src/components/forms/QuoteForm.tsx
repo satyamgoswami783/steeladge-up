@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, FormEvent } from "react";
+import { useState, useRef, useEffect, FormEvent } from "react";
 import {
   Send,
   CheckCircle2,
@@ -36,6 +36,7 @@ interface SubmittedData {
 
 export function QuoteForm() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const fullNameInputRef = useRef<HTMLInputElement>(null);
 
   const [formData, setFormData] = useState({
     fullName: "",
@@ -53,6 +54,18 @@ export function QuoteForm() {
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
   const [submittedData, setSubmittedData] = useState<SubmittedData | null>(null);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const hash = window.location.hash;
+      if (hash === "#quote-form" || hash === "#estimate-form" || hash === "#form") {
+        setTimeout(() => {
+          containerRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+          fullNameInputRef.current?.focus();
+        }, 120);
+      }
+    }
+  }, []);
 
   const validate = (): boolean => {
     const newErrors: FormErrors = {};
@@ -291,7 +304,11 @@ export function QuoteForm() {
     : `mailto:${companyData.contact.email}`;
 
   return (
-    <div ref={containerRef} className="bg-white border border-slate-200 p-6 sm:p-10 shadow-xl relative scroll-mt-32">
+    <div
+      id="quote-form"
+      ref={containerRef}
+      className="bg-white border border-slate-200 p-6 sm:p-10 shadow-xl relative scroll-mt-28 sm:scroll-mt-36"
+    >
       {/* SUCCESS FLOW VIEW */}
       {submitStatus === "success" && submittedData ? (
         <div className="py-4 sm:py-6">
@@ -484,6 +501,7 @@ export function QuoteForm() {
                   FULL NAME <span className="text-red-500">*</span>
                 </label>
                 <input
+                  ref={fullNameInputRef}
                   type="text"
                   id="fullName"
                   name="fullName"
