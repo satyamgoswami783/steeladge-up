@@ -12,10 +12,17 @@ import { companyData } from "@/data/company";
 
 function isRouteActive(currentPathname: string, targetHref: string): boolean {
   if (!currentPathname || !targetHref) return false;
-  const current = currentPathname.replace(/\/$/, "") || "/";
-  const target = targetHref.replace(/\/$/, "") || "/";
+  const current = currentPathname.toLowerCase().replace(/\/+$/, "") || "/";
+  const target = targetHref.toLowerCase().replace(/\/+$/, "") || "/";
   if (target === "/") return current === "/";
   return current === target || current.startsWith(`${target}/`);
+}
+
+function isSubItemActive(currentPathname: string, targetHref: string): boolean {
+  if (!currentPathname || !targetHref) return false;
+  const current = currentPathname.toLowerCase().replace(/\/+$/, "") || "/";
+  const target = targetHref.toLowerCase().replace(/\/+$/, "") || "/";
+  return current === target;
 }
 
 export function Header() {
@@ -74,7 +81,7 @@ export function Header() {
 
           {/* Desktop Navigation */}
           <nav
-            className="hidden lg:flex items-center space-x-8 select-none"
+            className="hidden lg:flex items-center space-x-7 select-none"
             aria-label="Main Navigation"
           >
             {mainNavItems.map((item) => {
@@ -84,7 +91,7 @@ export function Header() {
                 return (
                   <div
                     key={item.label}
-                    className="relative py-2"
+                    className="relative group py-2"
                     onMouseEnter={handleMouseEnter}
                     onMouseLeave={handleMouseLeave}
                   >
@@ -92,7 +99,7 @@ export function Header() {
                       href={item.href}
                       prefetch={true}
                       onClick={() => setDropdownOpen(false)}
-                      className={`relative inline-flex items-center gap-1.5 text-xs font-semibold tracking-widest uppercase transition-colors cursor-pointer py-1.5 ${
+                      className={`relative inline-flex items-center gap-1.5 text-xs font-bold tracking-widest uppercase transition-colors cursor-pointer py-1.5 ${
                         isActive
                           ? "text-[#D3A15D]"
                           : "text-stone-200 hover:text-white"
@@ -101,11 +108,13 @@ export function Header() {
                       <span>{item.label}</span>
                       <ChevronDown
                         className={`w-3.5 h-3.5 transition-transform duration-200 ${
-                          dropdownOpen ? "rotate-180 text-[#D3A15D]" : isActive ? "text-[#D3A15D]" : "text-stone-400"
+                          dropdownOpen ? "rotate-180 text-[#D3A15D]" : isActive ? "text-[#D3A15D]" : "text-stone-400 group-hover:text-white"
                         }`}
                       />
-                      {isActive && (
-                        <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#C89552]" />
+                      {isActive ? (
+                        <span className="absolute bottom-0 left-0 right-0 h-[2.5px] bg-[#C89552] rounded-full shadow-[0_1px_6px_rgba(200,149,82,0.8)]" />
+                      ) : (
+                        <span className="absolute bottom-0 left-0 right-0 h-[1.5px] bg-white/40 scale-x-0 group-hover:scale-x-100 transition-transform duration-200" />
                       )}
                     </Link>
 
@@ -119,7 +128,7 @@ export function Header() {
                     >
                       <div className="bg-[#0B2025]/98 backdrop-blur-2xl border border-white/20 shadow-[0_20px_50px_rgba(0,0,0,0.85)] p-2 space-y-1.5 ring-1 ring-black/50">
                         {item.children.map((subItem) => {
-                          const isSubActive = isRouteActive(pathname, subItem.href);
+                          const isSubActive = isSubItemActive(pathname, subItem.href);
                           const isAll = subItem.label.includes("ALL");
                           return (
                             <Link
@@ -129,7 +138,7 @@ export function Header() {
                               onClick={() => setDropdownOpen(false)}
                               className={`group/sub block p-3 transition-all duration-150 rounded-none cursor-pointer border ${
                                 isSubActive
-                                  ? "bg-[#C89552]/20 border-[#C89552]/60 text-white"
+                                  ? "bg-[#C89552]/20 border-[#C89552]/70 text-white"
                                   : isAll
                                   ? "mb-1.5 pb-3 border-b border-white/15 bg-white/5 hover:bg-[#C89552]/20 hover:border-[#C89552]/40"
                                   : "border-transparent hover:bg-white/10 hover:border-white/10"
@@ -170,15 +179,17 @@ export function Header() {
                   key={item.label}
                   href={item.href}
                   prefetch={true}
-                  className={`relative text-xs font-semibold tracking-widest uppercase transition-colors py-2 cursor-pointer ${
+                  className={`group relative text-xs font-bold tracking-widest uppercase transition-colors py-2 cursor-pointer ${
                     isActive
                       ? "text-[#D3A15D]"
                       : "text-stone-200 hover:text-white"
                   }`}
                 >
                   <span>{item.label}</span>
-                  {isActive && (
-                    <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#C89552]" />
+                  {isActive ? (
+                    <span className="absolute bottom-0 left-0 right-0 h-[2.5px] bg-[#C89552] rounded-full shadow-[0_1px_6px_rgba(200,149,82,0.8)]" />
+                  ) : (
+                    <span className="absolute bottom-0 left-0 right-0 h-[1.5px] bg-white/40 scale-x-0 group-hover:scale-x-100 transition-transform duration-200" />
                   )}
                 </Link>
               );
@@ -292,7 +303,7 @@ export function Header() {
                       {mobileSubmenuOpen && (
                         <div className="pl-3 space-y-1 my-1 border-l-2 border-[#C89552]/60">
                           {item.children.map((subItem) => {
-                            const isSubActive = isRouteActive(pathname, subItem.href);
+                            const isSubActive = isSubItemActive(pathname, subItem.href);
                             return (
                               <Link
                                 key={subItem.href}
@@ -300,7 +311,7 @@ export function Header() {
                                 prefetch={true}
                                 onClick={() => setMobileMenuOpen(false)}
                                 className={`block text-xs font-semibold py-2.5 cursor-pointer touch-manipulation ${
-                                  isSubActive ? "text-[#D3A15D]" : "text-stone-200 hover:text-[#D3A15D]"
+                                  isSubActive ? "text-[#D3A15D] font-bold" : "text-stone-200 hover:text-[#D3A15D]"
                                 }`}
                               >
                                 {subItem.label}
