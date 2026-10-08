@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 350" width="720" height="700" shape-rendering="geometricPrecision" text-rendering="geometricPrecision">
+  <!-- 4 Architectural 3D Towers - 100% Exact Match to Image 1 -->
+  <g id="towers">
+    <!-- Tower 1: Cyan / Blue (#009FE3) - Starts SMALL on left, slopes UP to right -->
+    <polygon points="56,175 110,122 152,85 152,175" fill="#101010" stroke="#000000" stroke-width="4" stroke-linejoin="round" />
+    <polygon points="56,175 152,85 152,175" fill="#009FE3" stroke="#000000" stroke-width="4" stroke-linejoin="round" />
+
+    <!-- Tower 2: Red (#E30613) - Center Peak -->
+    <polygon points="152,85 166,52 166,175" fill="#101010" stroke="#000000" stroke-width="4" stroke-linejoin="round" />
+    <polygon points="152,85 166,52 214,118 214,175" fill="#E30613" stroke="#000000" stroke-width="4" stroke-linejoin="round" />
+
+    <!-- Tower 3: Yellow-Orange (#FAA61A) - Highest Skyscraper Peak on Right -->
+    <polygon points="214,118 244,10 230,175" fill="#101010" stroke="#000000" stroke-width="4" stroke-linejoin="round" />
+    <polygon points="214,118 244,10 270,30 270,175" fill="#FAA61A" stroke="#000000" stroke-width="4" stroke-linejoin="round" />
+
+    <!-- Tower 4: Lime Green (#8CC63F) - Right Skyscraper -->
+    <polygon points="270,30 284,18 277,175" fill="#101010" stroke="#000000" stroke-width="4" stroke-linejoin="round" />
+    <polygon points="270,30 308,48 308,175" fill="#8CC63F" stroke="#000000" stroke-width="4" stroke-linejoin="round" />
+  </g>
+
+  <!-- Double-Framed Black Typography Box -->
+  <g id="typography">
+    <!-- Top Double Horizontal Bar Lines -->
+    <line x1="16" y1="175" x2="344" y2="175" stroke="#000000" stroke-width="5.5" stroke-linecap="square" />
+    <line x1="16" y1="184" x2="344" y2="184" stroke="#000000" stroke-width="3" stroke-linecap="square" />
+
+    <!-- STEELAGE -->
+    <text x="180" y="246" fill="#000000" font-family="Impact, 'Arial Black', 'Franklin Gothic Bold', sans-serif" font-size="60" font-weight="900" letter-spacing="1" text-anchor="middle">STEELAGE</text>
+
+    <!-- CONSTRUCTION LTD -->
+    <text x="180" y="288" fill="#000000" font-family="Impact, 'Arial Black', 'Franklin Gothic Bold', sans-serif" font-size="29" font-weight="900" letter-spacing="0.8" text-anchor="middle">CONSTRUCTION LTD</text>
+
+    <!-- Bottom Double Horizontal Bar Lines -->
+    <line x1="16" y1="298" x2="344" y2="298" stroke="#000000" stroke-width="3" stroke-linecap="square" />
+    <line x1="16" y1="307" x2="344" y2="307" stroke="#000000" stroke-width="5.5" stroke-linecap="square" />
+  </g>
+</svg>

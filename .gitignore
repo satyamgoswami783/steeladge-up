@@ -1,0 +1,30 @@
+   # Dependencies
+node_modules/
+
+# Next.js and build output
+.next/
+dist/
+out/
+build/
+
+# Environment files and secrets
+.env*
+!.env.example
+
+# Logs
+*.log
+
+# TypeScript cache
+*.tsbuildinfo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Responsive images are regenerated from public/images before dev/build.
+public/optimized/
+
+# Local zip archives and downloads
+*.zip
+drive-download-extracted/
+

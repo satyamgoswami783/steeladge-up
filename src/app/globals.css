@@ -1,0 +1,143 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-dark: #08171A;
+  --color-brand-navy: #0B2025;
+  --color-brand-teal: #C89552;
+  --color-brand-accent: #D3A15D;
+  --color-brand-gold: #C89552;
+  --color-brand-gold-hover: #B8803D;
+  --color-brand-gold-light: #E0B679;
+  --color-brand-light: #F9F8F5;
+  --color-brand-text: #FFFFFF;
+  --color-brand-muted: #94A3B8;
+  --color-brand-card: #0B2025;
+  --color-brand-border: #1E293B;
+}
+
+:root {
+  --background: #08171A;
+  --foreground: #F8FAFC;
+}
+
+html {
+  overflow-y: scroll;
+  scrollbar-gutter: stable;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  overflow-x: hidden;
+}
+
+/* Custom architectural scrollbar & helpers */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #08171A;
+}
+::-webkit-scrollbar-thumb {
+  background: #C89552;
+  border-radius: 4px;
+}
+
+/* Architectural grid overlay pattern */
+.bg-arch-grid {
+  background-size: 30px 30px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+}
+
+.bg-arch-grid-dark {
+  background-size: 30px 30px;
+  background-image: 
+    linear-gradient(to right, rgba(6, 38, 44, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(6, 38, 44, 0.06) 1px, transparent 1px);
+}
+
+/* Smooth glassmorphic effect */
+.glass-panel {
+  background: rgba(11, 32, 37, 0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+/* ─── Hero Animations ──────────────────────────────────────────────────── */
+
+/* Ken Burns slow zoom on background image */
+@keyframes hero-ken-burns {
+  0%   { transform: scale(1.08) translateX(0px); }
+  50%  { transform: scale(1.13) translateX(-12px); }
+  100% { transform: scale(1.08) translateX(0px); }
+}
+
+/* Fade + slide up entry */
+@keyframes hero-fade-up {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Shimmer on primary CTA */
+@keyframes cta-shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+/* Smooth floating badge */
+@keyframes hero-float {
+  0%, 100% { transform: translateY(0px); }
+  50%      { transform: translateY(-5px); }
+}
+
+.animate-ken-burns {
+  animation: hero-ken-burns 22s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+.animate-fade-up {
+  animation: hero-fade-up 0.85s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-fade-up-d1 { animation-delay: 0.10s; }
+.animate-fade-up-d2 { animation-delay: 0.22s; }
+.animate-fade-up-d3 { animation-delay: 0.34s; }
+.animate-fade-up-d4 { animation-delay: 0.46s; }
+.animate-fade-up-d5 { animation-delay: 0.58s; }
+
+.animate-hero-float {
+  animation: hero-float 4s ease-in-out infinite;
+}
+
+/* Subtle gold shimmer on CTA button */
+.btn-shimmer {
+  background-size: 200% auto;
+  transition: background-position 0.5s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+.btn-shimmer:hover {
+  background-position: right center;
+}
+
+/* ─── Infinite Marquee Animation (Right to Left Continuous Scroll) ────── */
+@keyframes marquee-scroll {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 30s linear infinite;
+  will-change: transform;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}

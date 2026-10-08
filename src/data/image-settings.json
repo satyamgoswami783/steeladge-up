@@ -1,0 +1,5 @@
+{
+  "deviceSizes": [640, 960, 1280, 1600, 1920],
+  "imageSizes": [320],
+  "quality": 80
+}

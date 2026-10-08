@@ -1,0 +1,4 @@
+# Force WWW to Non-WWW 301 Redirect for custom domain (optional)
+https://www.steelageconstruction.ca/* https://steelageconstruction.ca/:splat 301
+http://www.steelageconstruction.ca/* https://steelageconstruction.ca/:splat 301
+http://steelageconstruction.ca/* https://steelageconstruction.ca/:splat 301
